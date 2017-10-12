@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  salary: 1
+  responsibilities: MyString
+  demands: MyString
+
+two:
+  title: MyString
+  salary: 1
+  responsibilities: MyString
+  demands: MyString
