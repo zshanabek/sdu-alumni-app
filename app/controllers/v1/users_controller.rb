@@ -11,19 +11,10 @@ module V1
       end
     end
 
-    def index
-    end
 
-    def update
-    end
-
-    def destroy
-    end
-    
     private
-      def user_params 
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :graduation_date,:industry_id, :country_id)
-      end
-
+    def user_params 
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
   end
 end
