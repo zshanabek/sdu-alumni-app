@@ -12,9 +12,9 @@ class UsersController < ApplicationController
       :specialty_id => params[:specialty_id],  
       :industry_id => params[:industry_id],  
       :country_id => params[:country_id]
-    })    
+    })      
     if @user.save!
-      render json: @user
+      render :create
     else
       head :unprocessable_entity
     end
@@ -30,6 +30,6 @@ class UsersController < ApplicationController
   end
 
   def user_params 
-    params.require(:user).permit(:password, :password_confirmation, :first_name, :last_name, :email )
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :graduation_date,:industry_id, :country_id)
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :vacancies
+  resources :vacancies,  defaults: { format: :json }
   devise_for :users
   root to: "home#index"
   match 'users' => 'users#create', via: :post,  defaults: { format: :json }
