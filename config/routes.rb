@@ -1,8 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  resources :vacancies,  defaults: { format: :json }
   devise_for :users
-  root to: "home#index"
-  match 'users' => 'users#create', via: :post,  defaults: { format: :json }
-  resource :sessions, only: %i[create destroy show],  defaults: { format: :json }  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  namespace :v1, defaults: { format: :json } do
+    resources :vacancies
+    
+    resources :users, only: %i[create]
+      
+    resource :sessions, only: %i[create destroy show]
+  end
+
 end
