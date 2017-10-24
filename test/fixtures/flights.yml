@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  traveler_id: one
+  departure_city_id: MyString
+  arrival_city_id: MyString
+  departure_time: 2017-10-24 20:10:32
+  arrival_time: 2017-10-24 20:10:32
+
+two:
+  traveler_id: two
+  departure_city_id: MyString
+  arrival_city_id: MyString
+  departure_time: 2017-10-24 20:10:32
+  arrival_time: 2017-10-24 20:10:32

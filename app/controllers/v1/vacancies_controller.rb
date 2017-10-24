@@ -5,6 +5,12 @@ module V1
         before_action :set_vacancy, only: [:show, :update, :destroy]
         
         def index
+            @vacancies = current_user.vacancies
+
+            render :index, status: :ok
+        end
+
+        def feed
             @vacancies = Vacancy.all
 
             render :index, status: :ok
@@ -45,6 +51,10 @@ module V1
         
             def vacancy_params
                 params.require(:vacancy).permit(:title, :salary, :responsibilities, :demands, :user_id)
+            end
+
+            def current_user
+                @current_user = User.find(params[:user_id])
             end
         
     end
