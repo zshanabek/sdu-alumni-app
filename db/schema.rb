@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024142102) do
+ActiveRecord::Schema.define(version: 20171025162100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "flights", force: :cascade do |t|
-    t.string "departure_city_id"
-    t.string "arrival_city_id"
-    t.datetime "departure_time"
-    t.datetime "arrival_time"
+    t.integer "departure_city"
+    t.integer "arrival_city"
+    t.integer "departure_time"
+    t.integer "arrival_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

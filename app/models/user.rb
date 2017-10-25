@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_many :vacancies
+  has_many :flights
   acts_as_token_authenticatable
   
   # Include default devise modules. Others available are:

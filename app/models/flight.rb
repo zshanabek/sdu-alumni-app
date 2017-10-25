@@ -1,3 +1,3 @@
 class Flight < ApplicationRecord
-  belongs_to :traveler_id
+    belongs_to :user
 end
