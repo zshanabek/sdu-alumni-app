@@ -5,7 +5,7 @@ json.data do
         :id,
         :email,
         :authentication_token,
-        :first_name,
+        # :first_name,
         # :last_name,
         # :admission_date
         # :graduation_date,
