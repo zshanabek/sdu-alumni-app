@@ -7,12 +7,10 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :users, only: %i[create] do 
       resources :vacancies
-    end
-    resources :users, only: %i[create] do 
-      resources :flight
+      resources :flights
     end
     resource :sessions, only: %i[create destroy show]
   end
   get 'v1/vacancies' => 'v1/vacancies#feed', :as => :v1_vacancies
-  get 'v1/flight' => 'v1/flight#feed', :as => :v1_flights
+  get 'v1/flights' => 'v1/flights#feed', :as => :v1_flights
 end

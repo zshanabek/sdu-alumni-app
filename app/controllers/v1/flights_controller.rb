@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module V1
-  class FlightController < ApplicationController
+  class FlightsController < ApplicationController
     before_action :set_flight, only: [:show, :update, :destroy]
     
     def index
-        @flights = current_user.vacancies
+        @flights = current_user.flights
 
         render :index, status: :ok
     end

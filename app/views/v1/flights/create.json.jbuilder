@@ -1,7 +1,7 @@
 json.data do 
     json.flight do
         json.call(
-            @flights,
+            @flight,
             :id,
             :departure_city,
             :departure_time,

@@ -1,5 +1,5 @@
 json.call(
-    flights,
+    flight,
     :id,
     :departure_city,
     :departure_time,

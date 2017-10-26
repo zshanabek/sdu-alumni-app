@@ -46,7 +46,7 @@ module V1
         
         private
             def set_vacancy
-                @vacancy = Vacancy.find(params[:id])
+                @vacancy = current_user.vacancies.find(params[:id])
             end
         
             def vacancy_params
