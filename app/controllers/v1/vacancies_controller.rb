@@ -33,9 +33,9 @@ module V1
         
         def update
             if @vacancy.update(vacancy_params)
-                render :show, status: :ok, location: @vacancy 
+                render :show
             else
-                render json: @vacancy.errors, status: :unprocessable_entity 
+                head(:unprocessable_entity)                
             end
         end
         

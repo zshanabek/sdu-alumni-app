@@ -32,9 +32,9 @@ module V1
     
     def update
         if @flight.update(flight_params)
-            render :show, status: :ok, location: @flight 
+            render :show 
         else
-            render json: @flight.errors, status: :unprocessable_entity 
+            head(:unprocessable_entity)
         end
     end
     
