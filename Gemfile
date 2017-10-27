@@ -15,6 +15,8 @@ gem 'puma', '~> 3.7'
 gem 'jbuilder'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+gem 'public_activity'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -40,5 +42,3 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

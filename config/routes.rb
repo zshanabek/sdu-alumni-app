@@ -8,9 +8,12 @@ Rails.application.routes.draw do
     resources :users, only: %i[create] do 
       resources :vacancies
       resources :flights
+      resources :follows, only: %i[create destroy]      
     end
     resource :sessions, only: %i[create destroy show]
   end
   get 'v1/vacancies' => 'v1/vacancies#feed', :as => :v1_vacancies
   get 'v1/flights' => 'v1/flights#feed', :as => :v1_flights
+
+  root 'v1/home#index'
 end
