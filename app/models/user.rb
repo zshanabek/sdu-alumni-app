@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   has_many :vacancies
   has_many :flights
+  has_many :skills
+  
   acts_as_token_authenticatable
   acts_as_followable
   acts_as_follower
