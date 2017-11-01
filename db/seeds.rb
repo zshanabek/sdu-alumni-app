@@ -1,9 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-100.times do
+DatabaseCleaner.clean_with(:truncation)
+User.destroy_all
+20.times do
     User.create(email: Faker::Internet.email, password:"qwerty123",password_confirmation: "qwerty123")
 end
+Vacancy.destroy_all
+20.times do
+    Vacancy.create(title: Faker::Job.title, salary: Faker::Number.decimal(2), responsibilities: Faker::Job.key_skill, demands: Faker::Job.key_skill, user_id: Faker::Number.between(1, 20))
+end
+Follow.destroy_all
+40.times do
+    Follow.create(followable_type: "User", followable_id: Faker::Number.between(1, 20), follower_type: "User", follower_id: Faker::Number.between(1, 20), blocked: false)
+end
+

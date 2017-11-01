@@ -3,8 +3,10 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable  
   # has_secure_password
-  has_many :vacancies
-  has_many :flights
+  has_many :vacancies, dependent: :destroy
+  has_many :flights, dependent: :destroy
+  has_and_belongs_to_many :skills
+  has_and_belongs_to_many :industries
   # acts_as_token_authenticatable
   acts_as_followable
   acts_as_follower

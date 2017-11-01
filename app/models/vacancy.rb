@@ -3,4 +3,5 @@
 class Vacancy < ApplicationRecord
     include PublicActivity::Model
     belongs_to :user
+    tracked 
 end

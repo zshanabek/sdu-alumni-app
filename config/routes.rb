@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'flights' => 'flights#feed', :as => :flights
 
     get 'find_friends' => 'home#find_friends', :as => :find_friends
+    get 'front' => 'home#front', :as => :front
     root 'home#index'  
   end
 
