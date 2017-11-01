@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -14,9 +14,10 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'jbuilder'
 gem 'devise'
-gem 'simple_token_authentication', '~> 1.0'
+# gem 'simple_token_authentication', '~> 1.0'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'public_activity'
+gem 'knock'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

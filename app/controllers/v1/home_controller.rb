@@ -1,22 +1,18 @@
 class V1::HomeController < ApplicationController
-  before_action :set_user, except: :front
-
+  before_action :authenticate_user
   def index
-    @friends = @user.all_following.unshift(@user)
+    @friends = current_user.all_following.unshift(current_user)
     @activities = PublicActivity::Activity.where(owner_id: @friends).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def front
-    @activities = PublicActivity::Activity.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @activities = PublicActivity::Activity.order(created_at: :desc)
   end
 
   def find_friends
-    @friends = @user.all_following
-    @users =  User.where.not(id: @friends.unshift(@user)).paginate(page: params[:page])
+    @friends = current_user.all_following
+    @users =  User.where.not(id: @friends.unshift(current_user))
+    render json: @users
   end
 
-  private
-  def set_user
-    @user = current_user
-  end
 end
