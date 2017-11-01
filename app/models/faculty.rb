@@ -1,4 +1,3 @@
 class Faculty < ApplicationRecord
-    include PublicActivity::Model
-    has_many :specialty
+    has_many :specialties
 end
