@@ -1,21 +1,5 @@
-GIT
-  remote: git://github.com/stympy/faker.git
-  revision: be8fc6741bbcec08782208ec7068e889cc16e7e6
-  branch: master
-  specs:
-    faker (1.8.4)
-      i18n (~> 0.5)
-
-GIT
-  remote: https://github.com/tcocca/acts_as_follower.git
-  revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
-  branch: master
-  specs:
-    acts_as_follower (0.2.1)
-      activerecord (>= 4.0)
-
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actioncable (5.1.4)
       actionpack (= 5.1.4)
@@ -54,13 +38,14 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts_as_follower (0.2.1)
     arel (8.0.0)
     bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.1.0)
     concurrent-ruby (1.0.5)
     crass (1.0.2)
-    database_cleaner (1.6.1)
+    database_cleaner (1.6.2)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -68,6 +53,8 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.7.0)
+    faker (1.8.4)
+      i18n (~> 0.5)
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -76,11 +63,6 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
-    jwt (1.5.6)
-    knock (2.1.1)
-      bcrypt (~> 3.1)
-      jwt (~> 1.5)
-      rails (>= 4.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -107,6 +89,7 @@ GEM
       railties (>= 3.0.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-cors (1.0.2)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -140,6 +123,10 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
+    simple_token_authentication (1.15.1)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -166,18 +153,19 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_follower!
+  acts_as_follower
   byebug
   database_cleaner
   devise
-  faker!
+  faker
   jbuilder
-  knock
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
   public_activity
   puma (~> 3.7)
+  rack-cors
   rails (~> 5.1.4)
+  simple_token_authentication (~> 1.0)
   spring
   spring-watcher-listen (~> 2.0.0)
 

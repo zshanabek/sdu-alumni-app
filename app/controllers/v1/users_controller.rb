@@ -2,7 +2,7 @@
 
 module V1
   class UsersController < ApplicationController
-    before_action :authenticate_user
+    # before_action :authenticate_user!, except: :create   
     before_action :set_user, only: [:show, :update, :destroy]
     def create
       @user = User.new(user_params)      
@@ -14,6 +14,7 @@ module V1
     end
 
     def show
+      @industries = @user.industries
       render :show, status: :ok
     end
 
@@ -25,7 +26,7 @@ module V1
       end
     end
 
-    def delete
+    def destroy
       @user.destroy 
       head :no_content 
     end
@@ -35,7 +36,11 @@ module V1
       @user = User.find(params[:id])
     end
     def user_params 
-      params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :admission_date, :graduation_date , :specialty_id , :industry_id, :job_title_id)
+      params.require(:user).permit(
+        :email, :password, :password_confirmation, :first_name, 
+        :last_name, :admission_date, :graduation_date, :specialty_id,
+        :industry_id, :job_title_id
+      )
     end
   end
 end

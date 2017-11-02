@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       resources :follows, only: %i[create destroy]      
     end
     resource :sessions, only: %i[create destroy show]
-    post 'user_token' => 'user_token#create'  
     get 'vacancies' => 'vacancies#feed', :as => :vacancies
     get 'flights' => 'flights#feed', :as => :flights
 

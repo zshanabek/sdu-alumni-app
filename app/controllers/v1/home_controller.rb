@@ -1,5 +1,5 @@
 class V1::HomeController < ApplicationController
-  before_action :authenticate_user, except: :front
+  # before_action :authenticate_user!, except: :front
   before_action :set_user, except: :front
   def index
     @friends = @user.all_following.unshift(@user)
@@ -15,7 +15,7 @@ class V1::HomeController < ApplicationController
   def find_friends
     @friends = current_user.all_following
     @users =  User.where.not(id: @friends.unshift(current_user))
-    render json: @users
+    render :find_friends, status: :ok
   end
 
   private
