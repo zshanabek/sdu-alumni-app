@@ -3,7 +3,8 @@
 module V1
   class UsersController < ApplicationController
     # before_action :authenticate_user!, except: :create   
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_user, :set_industries, only: [:show, :update, :destroy]
+
     def create
       @user = User.new(user_params)      
       if @user.save
@@ -14,7 +15,6 @@ module V1
     end
 
     def show
-      @industries = @user.industries
       render :show, status: :ok
     end
 
@@ -34,6 +34,10 @@ module V1
     private
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_industries
+      @industries = @user.industries      
     end
     def user_params 
       params.require(:user).permit(
