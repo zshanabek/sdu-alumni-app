@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101113124) do
+ActiveRecord::Schema.define(version: 20171109150321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,18 +51,15 @@ ActiveRecord::Schema.define(version: 20171101113124) do
     t.index ["user_id"], name: "index_flights_on_user_id"
   end
 
-  create_table "follows", force: :cascade do |t|
-    t.string "followable_type", null: false
-    t.bigint "followable_id", null: false
-    t.string "follower_type", null: false
-    t.bigint "follower_id", null: false
-    t.boolean "blocked", default: false, null: false
+  create_table "friendships", force: :cascade do |t|
+    t.string "friendable_type"
+    t.bigint "friendable_id"
+    t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followable_id", "followable_type"], name: "fk_followables"
-    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
-    t.index ["follower_id", "follower_type"], name: "fk_follows"
-    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
+    t.integer "blocker_id"
+    t.integer "status"
+    t.index ["friendable_type", "friendable_id"], name: "index_friendships_on_friendable_type_and_friendable_id"
   end
 
   create_table "industries", force: :cascade do |t|
@@ -114,15 +111,14 @@ ActiveRecord::Schema.define(version: 20171101113124) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.date "admission_date"
     t.date "graduation_date"
     t.integer "specialty_id"
-    t.integer "industry_id"
-    t.integer "job_title_id"
     t.integer "country_id"
     t.string "authentication_token", limit: 30
+    t.bigint "industry_id"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["industry_id"], name: "index_users_on_industry_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -139,5 +135,6 @@ ActiveRecord::Schema.define(version: 20171101113124) do
 
   add_foreign_key "flights", "users"
   add_foreign_key "specialties", "faculties"
+  add_foreign_key "users", "industries"
   add_foreign_key "vacancies", "users"
 end
