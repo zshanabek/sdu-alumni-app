@@ -4,8 +4,6 @@ json.call(
     :email,
     :first_name,
     :last_name,
-    :admission_date,
     :graduation_date,
     :specialty_id,
-    :job_title_id
   )

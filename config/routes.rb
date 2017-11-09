@@ -8,9 +8,16 @@ Rails.application.routes.draw do
     resources :users do 
       resources :vacancies
       resources :flights
-      resources :follows, only: %i[create destroy]      
+      resources :friendships, except: %i[index show update] 
+      
+      put 'accept' => 'friendships#update', :as => :accept_friend
+      put 'decline' => 'friendships#decline', :as => :decline_friend      
+      put 'remove' => 'friendships#destroy', :as => :destroy_friend
+      
     end
     resource :sessions, only: %i[create destroy show]
+    get 'pending_friends' => 'friendships#index', :as => :pending_friends  
+    get 'requested_friends' => 'friendships#requested_friends', :as => :requested_friends        
     get 'vacancies' => 'vacancies#feed', :as => :vacancies
     get 'flights' => 'flights#feed', :as => :flights
 
