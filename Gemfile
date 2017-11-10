@@ -21,6 +21,10 @@ gem 'public_activity'
 gem 'database_cleaner'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', require: 'rack/cors'
+# Pagination
+gem 'kaminari'
+gem 'api-pagination'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
