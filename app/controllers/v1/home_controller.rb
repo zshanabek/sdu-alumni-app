@@ -13,8 +13,8 @@ class V1::HomeController < ApplicationController
   end
 
   def find_friends
-    @friends = current_user.friends
-    @users =  User.where.not(id: @friends.unshift(current_user))
+    @friends = @user.friends
+    @users =  User.where.not(id: @friends.unshift(@user))
     render :find_friends, status: :ok
   end
 
