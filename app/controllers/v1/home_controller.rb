@@ -11,8 +11,25 @@ class V1::HomeController < ApplicationController
   end
 
   def find_friends
+    start_year = params[:start_year].to_i
+    end_year = params[:end_year].to_i
+  
+    
     @friends = current_user.friends.to_ary
-    @users = paginate User.where.not(id: @friends.unshift(current_user)), per_page: 10
+    @not_friends =  User.where.not(id: @friends.unshift(current_user))
+
+    @same_years = []
+
+    range = start_year..end_year
+    for i in @not_friends
+      y = range === i.graduation_date.year.to_i
+      if y
+        @same_years.push(i)
+      end
+    end
+
+    @users = paginate @same_years, per_page: 10
+
     render :find_friends, status: :ok
   end
 
