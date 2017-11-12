@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :vacancies, dependent: :destroy
   has_many :flights, dependent: :destroy
+  belongs_to :faculty
+  belongs_to :specialty  
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :industries
   
