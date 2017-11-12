@@ -24,9 +24,7 @@ gem 'rack-cors', require: 'rack/cors'
 # Pagination
 gem 'kaminari'
 gem 'api-pagination'
-# Filter, search, and sort your ActiveRecord lists.
-gem 'filterrific'
-
+gem 'has_scope'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
