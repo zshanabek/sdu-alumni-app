@@ -1,9 +1,8 @@
 # frozen_string_literal: true
-
 module V1
-  class UsersController < ApplicationController
+  class UsersController < AplicationController
     # before_action :authenticate_user!, except: :create   
-    before_action :set_user, :set_industries, only: [:show, :update, :destroy]
+    before_action :set_user, :set_industries, only: [:show, :current_friends, :update, :destroy]
 
     def create
       @user = User.new(user_params)      
@@ -31,9 +30,18 @@ module V1
       head :no_content 
     end
 
+    def current_friends
+      @users = @user.friends.to_ary
+      if @users.empty?
+        render json: {'info':'No friends'}  
+      else
+        render :index, status: :ok
+      end
+    end
+
     private
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:user_id])
     end
 
     def set_industries

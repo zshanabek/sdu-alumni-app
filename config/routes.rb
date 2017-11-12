@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :vacancies
       resources :flights
       resources :friendships, except: %i[index show update] 
-      
+      get 'friends' => 'users#current_friends', :as => :current_friends       
       put 'accept' => 'friendships#update', :as => :accept_friend
       put 'decline' => 'friendships#decline', :as => :decline_friend      
       put 'remove' => 'friendships#destroy', :as => :destroy_friend
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'vacancies' => 'vacancies#feed', :as => :vacancies
     get 'flights' => 'flights#feed', :as => :flights
 
-    get 'find_friends' => 'home#find_friends', :as => :find_friends
+    post 'find_friends' => 'home#find_friends', :as => :find_friends
     get 'front' => 'home#front', :as => :front
     root 'home#index'  
   end
