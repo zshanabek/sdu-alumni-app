@@ -6,6 +6,7 @@ module V1
             @users = current_user.pending_friends
             render :template => "v1/users/index", status: :ok
         end
+        
         def create
             current_user.friend_request(@user)
             render  :template => "v1/users/show", status: :ok
