@@ -12,6 +12,7 @@ class User < ApplicationRecord
   belongs_to :faculty
   belongs_to :specialty  
   has_and_belongs_to_many :skills
-  has_and_belongs_to_many :industries
+  has_many :industry_users
+  has_many :industries, :through => :industry_users
   
 end

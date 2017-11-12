@@ -16,14 +16,16 @@ gem 'jbuilder'
 gem 'has_friendship'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
-gem 'acts_as_follower'
 gem 'public_activity'
+# Clean and trankate databasse
 gem 'database_cleaner'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', require: 'rack/cors'
 # Pagination
 gem 'kaminari'
 gem 'api-pagination'
+# Filter, search, and sort your ActiveRecord lists.
+gem 'filterrific'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

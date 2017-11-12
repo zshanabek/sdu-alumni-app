@@ -38,7 +38,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_follower (0.2.1)
     api-pagination (4.6.3)
     arel (8.0.0)
     bcrypt (3.1.11)
@@ -57,6 +56,7 @@ GEM
     faker (1.8.4)
       i18n (~> 0.5)
     ffi (1.9.18)
+    filterrific (2.1.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     has_friendship (1.1.1)
@@ -170,12 +170,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_follower
   api-pagination
   byebug
   database_cleaner
   devise
   faker
+  filterrific
   has_friendship
   jbuilder
   kaminari
