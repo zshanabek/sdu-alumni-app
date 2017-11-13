@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 module V1
-  class UsersController < AplicationController
-    # before_action :authenticate_user!, except: :create   
+  class UsersController < ApplicationController
+    before_action :authenticate_user!, except: :create   
     before_action :set_user, :set_industries, only: [:show, :current_friends, :update, :destroy]
 
     def create
-      @user = User.new(user_params)      
-      if @user.save
+      @user = User.new(user_params)  
+      params.permit(:industry_id)
+      if @user.save!
         render :create
       else
         head(:unprocessable_entity)
       end
+      @user.industries << Industry.find(params[:industry_id])          
     end
 
     def show
@@ -41,7 +43,10 @@ module V1
 
     private
     def set_user
-      @user = User.find(params[:user_id])
+      @user = User.find(params[:id])     
+      if @user==nil       
+        @user = User.find(params[:user_id])
+      end
     end
 
     def set_industries
@@ -50,8 +55,7 @@ module V1
     def user_params 
       params.require(:user).permit(
         :email, :password, :password_confirmation, :first_name, 
-        :last_name, :admission_date, :graduation_date, :specialty_id,
-        :industry_id, :job_title_id
+        :last_name, :graduation_date, :specialty_id, :faculty_id
       )
     end
   end
