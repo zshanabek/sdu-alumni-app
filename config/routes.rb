@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     post 'find_friends' => 'home#find_friends', :as => :find_friends
     get 'front' => 'home#front', :as => :front
+    get 'faculties' => 'home#faculties', :as => :faculties
+    get 'specialties' => 'home#specialties', :as => :specialties
     root 'home#index'  
   end
 
