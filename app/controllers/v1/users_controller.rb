@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 module V1
   class UsersController < ApplicationController
-    before_action :authenticate_user!, except: :create   
-    before_action :set_user, :set_industries, only: [:show, :current_friends, :update, :destroy]
-
+    before_action :authenticate_user!, except: [:create, :current_friends]
+    before_action :set_user, :set_industries, only: [:show, :update, :destroy]
+    before_action :interested_user, only: :current_friends
+    
     def create
       @user = User.new(user_params)  
-      params.permit(:industry_id)
       if @user.save!
         render :create
       else
@@ -25,6 +25,10 @@ module V1
       else
           head(:unprocessable_entity)                
       end
+      if params[:industry_id]!=nil
+        i = Industry.find(params[:industry_id])
+        @user.industries = [i]
+      end
     end
 
     def destroy
@@ -42,15 +46,20 @@ module V1
     end
 
     private
+    def interested_user
+      @user = User.find(params[:user_id])      
+    end
     def set_user
-      @user = User.find(params[:id])     
-      if @user==nil       
-        @user = User.find(params[:user_id])
-      end
+      @user = User.find(params[:id]) 
     end
 
     def set_industries
-      @industries = @user.industries      
+      @industries = @user.industries   
+      if @industries[0]==nil
+        @industry = nil 
+      else 
+        @industry = @industries[0].name
+      end
     end
     def user_params 
       params.require(:user).permit(
