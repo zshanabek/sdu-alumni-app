@@ -9,9 +9,11 @@ module V1
       @user = User.new(user_params)  
       if @user.save!
         render :create
-        params[:industry_id].each{|i|
-          @user.industries << Industry.find(i)
-        }
+        if(params.has_key?(:industry_id))
+          params[:industry_id].each{|i|
+            @user.industries << Industry.find(i)
+          }
+        end
       else
         head(:unprocessable_entity)
       end
