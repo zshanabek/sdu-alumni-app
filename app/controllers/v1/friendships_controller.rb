@@ -17,6 +17,16 @@ module V1
             render :template => "v1/users/index", status: :ok
         end
 
+        def blocked_friends
+            @users = current_user.blocked_friends
+            render :template => "v1/users/index", status: :ok
+        end
+        
+        def block_user
+            current_user.block_friend(@user)
+            render  :template => "v1/users/show", status: :ok            
+        end
+
         def update
             current_user.accept_request(@user)
             render  :template => "v1/users/show", status: :ok            
