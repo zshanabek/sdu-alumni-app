@@ -5,5 +5,6 @@ json.call(
     :first_name,
     :last_name,
     :graduation_date,
-    :specialty_id
+    :specialty_id,
+    :faculty_id
   )

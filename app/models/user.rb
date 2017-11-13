@@ -19,8 +19,6 @@ class User < ApplicationRecord
     end
   end
 
-  scope :featured, -> { where(:featured => true) }
   scope :by_degree, -> degree { where(:specialty_id => degree) }
-  scope :by_industry, -> industry { where(:industry_id => industry) }  
   scope :by_period, -> started_at, ended_at { where("graduation_date >= ? AND graduation_date <= ?", started_at, ended_at) }
 end

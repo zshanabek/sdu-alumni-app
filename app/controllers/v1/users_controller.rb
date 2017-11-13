@@ -8,10 +8,14 @@ module V1
     def create
       @user = User.new(user_params)  
       if @user.save!
+        if (params[:industry_id]).length==1
+          @user.industries << Industry.find(params[:industry_id])
+        else
+          params[:industry_id].each{|i|
+            @user.industries << Industry.find(i)
+          }
+        end
         render :create
-        params[:industry_id].each{|i|
-          @user.industries << Industry.find(i)
-        }
       else
         head(:unprocessable_entity)
       end
