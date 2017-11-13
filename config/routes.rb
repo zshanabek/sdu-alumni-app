@@ -10,11 +10,11 @@ Rails.application.routes.draw do
       resources :flights
       resources :friendships, except: %i[index show update] 
       get 'friends' => 'users#current_friends', :as => :current_friends
-      get 'blocked_friends' => 'users#blocked_friends', :as => :current_friends       
+      get 'blocked_friends' => 'users#blocked_friends', :as => :blocked_friends       
       put 'accept' => 'friendships#update', :as => :accept_friend
       put 'decline' => 'friendships#decline', :as => :decline_friend      
       put 'remove' => 'friendships#destroy', :as => :destroy_friend
-      put 'block' => 'friendships#block_user', :as => :destroy_friend
+      put 'block' => 'friendships#block_user', :as => :block_friend
       
     end
     resource :sessions, only: %i[create destroy show]
