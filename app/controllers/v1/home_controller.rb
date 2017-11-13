@@ -1,6 +1,5 @@
 class V1::HomeController < ApplicationController
 
-  has_scope :featured, :type => :boolean
   has_scope :by_degree
   has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
   
@@ -20,6 +19,14 @@ class V1::HomeController < ApplicationController
     @users = paginate apply_scopes(User).all, per_page: 5
     render  :template => "v1/users/index", status: :ok            
     
+  end
+  def faculties
+    @faculties = Faculty.all
+    render  :index , status: :ok
+  end
+  def specialties
+    @specialties = Specialty.all
+    render  :specialties , status: :ok
   end
 
 
