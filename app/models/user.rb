@@ -13,8 +13,11 @@ class User < ApplicationRecord
   belongs_to :specialty  
   has_and_belongs_to_many :skills
   has_many :industry_users
-  has_many :industries, :through => :industry_users
-  
+  has_many :industries, :through => :industry_users do
+    def by_industry
+      industry { where("industry_users.by_industry = ?", industry)}
+    end
+  end
 
   scope :featured, -> { where(:featured => true) }
   scope :by_degree, -> degree { where(:specialty_id => degree) }
