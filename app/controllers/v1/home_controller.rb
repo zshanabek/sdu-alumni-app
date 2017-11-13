@@ -2,6 +2,7 @@ class V1::HomeController < ApplicationController
 
   has_scope :by_degree
   has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
+  before_action :set_faculty, only: :specialties
   
   def index
     @friends = @user.all_following.unshift(@user)
@@ -25,9 +26,10 @@ class V1::HomeController < ApplicationController
     render  :index , status: :ok
   end
   def specialties
-    @specialties = Specialty.all
     render  :specialties , status: :ok
   end
-
+  def set_faculty
+    @specialties = Specialty.where(:faculty_id => params[:faculty_id])
+  end
 
 end
