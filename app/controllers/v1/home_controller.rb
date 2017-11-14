@@ -6,9 +6,7 @@ class V1::HomeController < ApplicationController
   has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
   
   def index
-    @friends = @user.all_following.unshift(@user)
-    @activities = PublicActivity::Activity.where(owner_id: @friends).order(created_at: :desc)
-    render json: @activities
+    render json: {"data":{}}
   end
 
   def front
@@ -27,9 +25,8 @@ class V1::HomeController < ApplicationController
     render  :index , status: :ok
   end
   def specialties
-    @specialties = Specialty.all
-    render  :specialties , status: :ok
+    @specialties = Specialty.all    
+    render :specialties , status: :ok
   end
-
 
 end

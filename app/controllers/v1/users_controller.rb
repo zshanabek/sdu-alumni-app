@@ -8,18 +8,10 @@ module V1
     def create
       @user = User.new(user_params)  
       if @user.save!
-        if (params[:industry_id]).length==1
-          @user.industries << Industry.find(params[:industry_id])
-        else
-          params[:industry_id].each{|i|
-            @user.industries << Industry.find(i)
-          }
-        end
         render :create
       else
         head(:unprocessable_entity)
       end
-          
     end
 
     def show
@@ -31,10 +23,6 @@ module V1
         render :show
       else
           head(:unprocessable_entity)                
-      end
-      if params[:industry_id]!=nil
-        i = Industry.find(params[:industry_id])
-        @user.industries = [i]
       end
     end
 
@@ -70,8 +58,8 @@ module V1
     end
     def user_params 
       params.require(:user).permit(
-        :email, :password, :password_confirmation, :first_name, 
-        :last_name, :graduation_date, :specialty_id, :faculty_id
+        :email,  :password, :password_confirmation, :first_name, 
+        :last_name, :graduation_date, :specialty_id, :faculty_id,:industry_ids=>[]
       )
     end
   end
