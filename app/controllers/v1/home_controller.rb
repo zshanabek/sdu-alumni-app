@@ -29,5 +29,8 @@ class V1::HomeController < ApplicationController
     @specialties = Specialty.all    
     render :specialties , status: :ok
   end
-
+  def industries
+    @industries = Industry.all    
+    render :industries , status: :ok
+  end
 end
