@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20171112101155) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "industry_users", id: false, force: :cascade do |t|
+  create_table "industry_users", force: :cascade do |t|
     t.bigint "industry_id"
     t.bigint "user_id"
     t.index ["industry_id"], name: "index_industry_users_on_industry_id"

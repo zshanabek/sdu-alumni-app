@@ -12,13 +12,15 @@ class User < ApplicationRecord
   belongs_to :faculty
   belongs_to :specialty  
   has_and_belongs_to_many :skills
-  has_many :industry_users
-  has_many :industries, :through => :industry_users do
-    def by_industry
-      industry { where("industry_users.by_industry = ?", industry)}
-    end
-  end
+  has_many :industry_users,dependent: :delete_all 
+  has_many :industries, :through => :industry_users  
 
+  scope :by_industry, -> industry { 
+    User.joins(:industry_users).where(industry_users: { 
+      id: IndustryUser.where(industry: Industry.where(id: industry))
+    })
+  }  
   scope :by_degree, -> degree { where(:specialty_id => degree) }
+  scope :by_faculty, -> faculty { where(:faculty_id => faculty) }  
   scope :by_period, -> started_at, ended_at { where("graduation_date >= ? AND graduation_date <= ?", started_at, ended_at) }
 end
