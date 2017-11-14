@@ -6,7 +6,8 @@ class V1::HomeController < ApplicationController
   has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
   
   def index
-    render json: {"data":{}}
+
+    render :index, status: :ok
   end
 
   def front
@@ -22,7 +23,7 @@ class V1::HomeController < ApplicationController
   end
   def faculties
     @faculties = Faculty.all
-    render  :index , status: :ok
+    render  :faculties , status: :ok
   end
   def specialties
     @specialties = Specialty.all    
