@@ -20,7 +20,7 @@ class User < ApplicationRecord
       id: IndustryUser.where(industry: Industry.where(id: industry))
     })
   }  
-  scope :by_degree, -> degree { where(:specialty_id => degree) }
+  scope :by_specialty, -> specialty { where(:specialty_id => specialty) }
   scope :by_faculty, -> faculty { where(:faculty_id => faculty) }  
   scope :by_period, -> started_at, ended_at { where("graduation_date >= ? AND graduation_date <= ?", started_at, ended_at) }
 end

@@ -11,10 +11,14 @@ gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Generating fake data
 gem 'faker'
+# Easily render json views
 gem 'jbuilder'
+# For friendship requests
 gem 'has_friendship'
 gem 'devise'
+# For authenticating with token
 gem 'simple_token_authentication', '~> 1.0'
 gem 'public_activity'
 # Clean and trankate databasse
@@ -25,6 +29,8 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'kaminari'
 gem 'api-pagination'
 gem 'has_scope'
+# Monitor, troubleshoot, and tune application on production
+gem 'newrelic_rpm'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

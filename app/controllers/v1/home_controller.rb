@@ -1,6 +1,6 @@
 class V1::HomeController < ApplicationController
 
-  has_scope :by_degree
+  has_scope :by_specialty
   has_scope :by_industry
   has_scope :by_faculty  
   has_scope :by_period, :using => [:started_at, :ended_at], :type => :hash
