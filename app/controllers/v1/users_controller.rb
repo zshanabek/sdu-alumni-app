@@ -14,7 +14,7 @@ module V1
       end
     end
 
-    def show
+    def show      
       render :show, status: :ok
     end
 
