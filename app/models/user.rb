@@ -18,9 +18,9 @@ class User < ApplicationRecord
   # validates_attachment :avatar, presence: true, :size => { :in => 0..10.kilobytes }
   do_not_validate_attachment_file_type :avatar
 
-  scope :by_industry, -> industry {
+  scope :by_industry, -> industries {
     User.joins(:industry_users).where(industry_users: { 
-      id: IndustryUser.where(industry: Industry.where(id: industry))
+      id: IndustryUser.where(industry: Industry.where(id: industries))
     })
   }  
   scope :by_specialty, -> specialty { where(:specialty_id => specialty) }
