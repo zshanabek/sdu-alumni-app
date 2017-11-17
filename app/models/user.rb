@@ -15,9 +15,9 @@ class User < ApplicationRecord
   has_many :industry_users,dependent: :delete_all 
   has_many :industries, :through => :industry_users  
 
-  scope :by_industry, -> industry {
+  scope :by_industry, -> industries {
     User.joins(:industry_users).where(industry_users: { 
-      id: IndustryUser.where(industry: Industry.where(id: industry))
+      id: IndustryUser.where(industry: Industry.where(id: industries))
     })
   }  
   scope :by_specialty, -> specialty { where(:specialty_id => specialty) }

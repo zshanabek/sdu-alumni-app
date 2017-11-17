@@ -7,7 +7,7 @@ module V1
     
     def create
       @user = User.new(user_params)  
-      if @user.save!
+      if @user.save
         render :create
       else
         head(:unprocessable_entity)
@@ -19,16 +19,24 @@ module V1
     end
 
     def update
-      if @user.update(user_params)
-        render :show
+      if current_user == @user
+        if @user.update(user_params)
+          render :show
+        else
+            head(:unprocessable_entity)                
+        end
       else
-          head(:unprocessable_entity)                
+        head(:unauthorized)
       end
     end
 
     def destroy
-      @user.destroy 
-      head :no_content 
+      if current_user == @user        
+        @user.destroy 
+        head :no_content
+      else
+        head :unauthorized
+      end
     end
 
     def current_friends
@@ -36,6 +44,7 @@ module V1
       if @users.empty?
         render json: {'info':'No friends'}  
       else
+        @users.sort_by! &:first_name
         render :index, status: :ok
       end
     end

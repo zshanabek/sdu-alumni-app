@@ -28,18 +28,30 @@ module V1
         end
 
         def update
-            current_user.accept_request(@user)
-            render  :template => "v1/users/show", status: :ok            
+            if current_user.requested_friends.include?(@user)
+                current_user.accept_request(@user)
+                render  :template => "v1/users/show", status: :ok                        
+            else 
+                render json: {'info':'Request do not exist'}
+            end
         end
 
         def decline
-            current_user.decline_request(@user)
-            render  :template => "v1/users/show", status: :ok                        
+            if current_user.requested_friends.include?(@user)
+                current_user.decline_request(@user)
+                render  :template => "v1/users/show", status: :ok                        
+            else 
+                render json: {'info':'Request do not exist'}
+            end
         end
 
         def destroy
-            current_user.remove_friend(@user)
-            render  :template => "v1/users/show", status: :ok                        
+            if current_user.friends.include?(@user)
+                current_user.remove_friend(@user)
+                render  :template => "v1/users/show", status: :ok
+            else 
+                render json: {'info':'Friend do not exist'}
+            end
         end
 
         private

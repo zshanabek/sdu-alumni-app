@@ -17,6 +17,7 @@ class V1::HomeController < ApplicationController
 
   def find_friends
     @users = apply_scopes(User).all
+    @users = @users.order(:first_name)
     @users = paginate @users.uniq, per_page: 10
     render  :template => "v1/users/index", status: :ok            
   end
