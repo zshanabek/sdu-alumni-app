@@ -2,7 +2,6 @@
 
 class User < ApplicationRecord
   acts_as_token_authenticatable
-
   has_friendship
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -14,6 +13,10 @@ class User < ApplicationRecord
   has_and_belongs_to_many :skills
   has_many :industry_users,dependent: :delete_all 
   has_many :industries, :through => :industry_users  
+
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png" 
+  # validates_attachment :avatar, presence: true, :size => { :in => 0..10.kilobytes }
+  do_not_validate_attachment_file_type :avatar
 
   scope :by_industry, -> industry {
     User.joins(:industry_users).where(industry_users: { 

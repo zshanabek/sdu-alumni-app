@@ -23,10 +23,11 @@ module V1
         def create
             @vacancy = Vacancy.new(vacancy_params)
         
-            if @vacancy.save!
+            if @vacancy.save
                 render :create, status: :created
             else
-                render json: @vacancy.errors, status: :unprocessable_entity 
+                render json: { errors: @vacancy.errors.messages },
+                status: :unprocessable_entity
             end
 
         end
@@ -40,8 +41,11 @@ module V1
         end
         
         def destroy
-            @vacancy.destroy 
-            head :no_content 
+            if @vacancy.destroy 
+                head(:ok)
+            else
+                head(:unprocessable_entity)
+            end
         end
         
         private

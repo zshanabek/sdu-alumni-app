@@ -27,6 +27,7 @@ gem 'database_cleaner'
 gem 'rack-cors', require: 'rack/cors'
 # Pagination
 gem 'kaminari'
+gem "paperclip"
 gem 'api-pagination'
 gem 'has_scope'
 # Monitor, troubleshoot, and tune application on production

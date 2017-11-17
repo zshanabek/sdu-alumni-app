@@ -23,10 +23,10 @@ module V1
     def create
         @flight = Flight.new(flight_params)
     
-        if @flight.save!
+        if @flight.save
             render :create, status: :created
         else
-            render json: @flight.errors, status: :unprocessable_entity 
+            render json: { errors: @flight.errors.messages }, status: :unprocessable_entity
         end
     end
     

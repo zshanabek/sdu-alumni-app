@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     get 'faculties' => 'home#faculties', :as => :faculties
     get 'specialties' => 'home#specialties', :as => :specialties
     get 'industries' => 'home#industries', :as => :industries
-    root 'home#index'  
+    get 'activities' => 'home#activities', :as => :activities
+    
+    root 'home#index'
   end
 
 end

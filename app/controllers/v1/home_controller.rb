@@ -10,7 +10,7 @@ class V1::HomeController < ApplicationController
     render :index, status: :ok
   end
 
-  def front
+  def activities
     @activities = PublicActivity::Activity.order(created_at: :desc)
     render json: @activities    
   end

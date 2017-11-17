@@ -40,7 +40,7 @@ User.create(
         specialty_id: Faker::Number.between(1, 21)
     )
 end
-20.times do
+30.times do
     Vacancy.create(
         title: Faker::Job.title, salary: Faker::Number.decimal(2), 
         responsibilities: Faker::Job.key_skill, demands: Faker::Job.key_skill, 

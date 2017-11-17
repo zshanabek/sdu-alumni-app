@@ -7,10 +7,10 @@ module V1
     
     def create
       @user = User.new(user_params)  
-      if @user.save!
-        render :create
+      if @user.save
+        render :create, status: :created
       else
-        head(:unprocessable_entity)
+        render json: {errors: @user.errors.messages }, status: :unprocessable_entity
       end
     end
 
@@ -59,7 +59,7 @@ module V1
     def user_params 
       params.require(:user).permit(
         :email,  :password, :password_confirmation, :first_name, 
-        :last_name, :graduation_date, :specialty_id, :faculty_id,:industry_ids=>[]
+        :last_name, :graduation_date, :specialty_id, :faculty_id,:avatar, :industry_ids=>[]
       )
     end
   end

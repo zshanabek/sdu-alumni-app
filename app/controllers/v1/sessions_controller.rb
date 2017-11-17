@@ -4,7 +4,7 @@ module V1
     class SessionsController<ApplicationController
         
         def show
-            current_user ? head(:ok) :head(:unauthorized)
+            current_user ? head(:ok) : head(:unauthorized)
         end
 
         def create
